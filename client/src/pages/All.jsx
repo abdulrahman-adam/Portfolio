@@ -30,11 +30,24 @@ export default function Contacts() {
   }, []);
 
   const handleRemove = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce contact ?")) return;
+    console.log("Button clicked! ID to delete:", id); // <--- ADD THIS
+    // if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce contact ?")) return;
+    // To this (more explicit):
+// if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce contact ?")) {
+//   return;
+// }
+// Use window.confirm explicitly
+  const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce contact ?");
+  
+  if (!confirmed) {
+    console.log("Delete cancelled by user");
+    return;
+  }
     try {
       const { data } = await axios.post(`${backendUrl}/contact/remove`, { id });
       if (data.success) {
-        setContacts(contacts.filter((c) => c._id !== id));
+        // setContacts(contacts.filter((c) => c.id !== id));
+        setContacts(contacts.filter((c) => Number(c.id) !== Number(id)));
         toast.success("✅ Contact supprimé avec succès !");
       } else {
         toast.error("❌ Impossible de supprimer le contact.");
@@ -47,7 +60,7 @@ export default function Contacts() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
@@ -57,7 +70,7 @@ export default function Contacts() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
 
       <h1 className="text-3xl font-bold text-purple-700 mb-6 text-center">
         Liste des Contacts
@@ -81,14 +94,18 @@ export default function Contacts() {
               </thead>
               <tbody>
                 {contacts.map((contact) => (
-                  <tr key={contact._id} className="border-b hover:bg-purple-50 transition">
+                  <tr key={contact.id} className="border-b hover:bg-purple-50 transition">
                     <td className="p-3">{contact.name}</td>
                     <td className="p-3">{contact.phone}</td>
                     <td className="p-3">{contact.email}</td>
                     <td className="p-3">{contact.message}</td>
                     <td className="p-3 text-center">
                       <button
-                        onClick={() => handleRemove(contact._id)}
+                        onClick={() => handleRemove(contact.id)}
+  //                       onClick={() => {
+  //   alert("Test click!"); 
+  //   handleRemove(contact.id);
+  // }}
                         className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
                       >
                         Supprimer
@@ -104,7 +121,7 @@ export default function Contacts() {
           <div className="md:hidden space-y-4">
             {contacts.map((contact) => (
               <div
-                key={contact._id}
+                key={contact.id}
                 className="bg-white rounded-lg shadow-md p-4 border border-gray-200"
               >
                 <h2 className="text-lg font-bold text-purple-700">{contact.name}</h2>
@@ -118,7 +135,7 @@ export default function Contacts() {
                   <span className="font-semibold">Message:</span> {contact.message}
                 </p>
                 <button
-                  onClick={() => handleRemove(contact._id)}
+                  onClick={() => handleRemove(contact.id)}
                   className="mt-2 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition w-full"
                 >
                   Supprimer

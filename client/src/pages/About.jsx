@@ -23,7 +23,7 @@ const About = () => {
               Compétences & Expertise
             </h2>
             <div className="flex flex-wrap justify-center md:justify-start gap-3">
-              {["React", "React Native", "Node.js", "Angular", "Java","Python", "Tailwind CSS", "MongoDB", "MySQL", "REST APIs", "VPS & Nginx"].map((skill) => (
+              {["React", "React Native", "Tailwind CSS", "Angular", "Node.js", "NestJS", "Java","Python", "MongoDB", "MySQL", "MariaDB", "REST APIs", "VPS & Nginx", "DevOps"].map((skill) => (
                 <span key={skill} className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm sm:text-base">
                   {skill}
                 </span>

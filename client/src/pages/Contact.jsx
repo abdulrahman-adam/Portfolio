@@ -22,11 +22,19 @@ export default function Contact() {
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Veuillez entrer votre nom.";
-    } else if (formData.name.length < 2) {
-      newErrors.name = "Le nom doit contenir au moins 2 caractères.";
-    }
+    // if (!formData.name.trim()) {
+    //   newErrors.name = "Veuillez entrer votre nom.";
+    // } else if (formData.name.length < 2) {
+    //   newErrors.name = "Le nom doit contenir au moins 2 caractères.";
+    // }
+
+    const nameRegex = /^[A-Za-zÀ-ÿ\s'-]{2,}$/;
+
+if (!formData.name.trim()) {
+  newErrors.name = "Veuillez entrer votre nom.";
+} else if (!nameRegex.test(formData.name.trim())) {
+  newErrors.name = "Le nom doit contenir au moins 2 caractères et uniquement des lettres.";
+}
 
     if (!formData.phone) {
       newErrors.phone = "Veuillez entrer votre numéro de téléphone.";

@@ -19,7 +19,7 @@ export default function Footer() {
         {/* Footer */}
         <footer className="flex flex-col items-center justify-center w-full h-[200px] px-10 bg-gradient-to-b from-[#5524B7] to-[#380B60] text-white/70 mt-auto">
           <p className="mt-4 text-center text-red-500">
-            Copyright © 2025{" "}
+            Copyright © 2026{" "}
             <a href="https://abdulrahman-adam.com">ABDULRAHMAN</a>. Tous droits
             réservés.
           </p>

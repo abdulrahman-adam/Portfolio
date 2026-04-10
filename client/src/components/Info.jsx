@@ -33,11 +33,14 @@ const Info = () => {
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">Tailwind CSS</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">Angular</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">Node.js</span>
+        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">NestJS</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">Java</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">Python</span>
-        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">MongoDB</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">MySQL</span>
+        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">MariaDB</span>
+        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">MongoDB</span>
         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">REST APIs</span>
+        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">DevOps</span>
       </div>
     </div>
   </div>

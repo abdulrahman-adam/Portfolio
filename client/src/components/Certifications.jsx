@@ -2,13 +2,18 @@ import React from "react";
 
 const certifications = [
   {
-    name: "Développeur web et web mobile BAC + 2",
-    place: "PREPAVENIR Formation Franconville",
+    name: "CTO & Tech Lead Mastère",
+    place: "HETIC Montreuil",
   },
   {
     name: "Concepteur Développeur d'Applications BAC + 3",
     place: "DORANCO Paris",
   },
+  {
+    name: "Développeur web et web mobile BAC + 2",
+    place: "ALT-RH Paris",
+  },
+  
 ];
 
 const Certifications = () => {
@@ -16,7 +21,7 @@ const Certifications = () => {
     <div className="min-h-screen bg-gray-50 py-10 px-4 w-full">
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
         <h1 className="text-3xl font-bold text-purple-700 mb-4 text-center">
-          🎓 Liste des Certifications
+          🎓 Liste des Formations
         </h1>
 
         {/* Paragraph */}

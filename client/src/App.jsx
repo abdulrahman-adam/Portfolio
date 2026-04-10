@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import All from './pages/All';
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // <--- ADD THIS LINE
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -23,6 +24,7 @@ const App = () => {
  <ToastContainer
   position="top-center"               // Center top of the screen
   autoClose={4000}                    // Auto-close after 4 seconds for better readability
+  style={{ zIndex: 9999 }}
   hideProgressBar={false}             // Show progress bar
   newestOnTop={true}                  // New messages appear on top
   closeOnClick                        // Close toast on click
