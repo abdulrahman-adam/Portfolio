@@ -13,25 +13,4 @@ node_modules/
 *.log
 docker-compose.yml
 
-
-sudo apt update
-sudo apt install mysql-server
-sudo mysql
-alter user 'root'@'localhost' identified with mysql_native_password by 'Mizab91fM!!!';
-exit
-mysql_secure_installation
-mysql -u root -p
-create database portfolio;
- show schemas;
- create user 'mizab'@'localhost' identified with mysql_native_password by 'Mizab91fM!!!';
- use mysql;
- select user from user;
- grant all on portfolio.* to 'mizab'@'localhost';
- exit
- sudo apt install php
- sudo apt install phpmyadmin
-
- scp -r "C:\Users\alsha\OneDrive\Desktop\projects\nodejs\portfolio" root@109.176.199.234:/var/www/
-node_modules/
-dist/
-.env
+docs.md
