@@ -182,18 +182,16 @@ if (!formData.name.trim()) {
 
         {/* Contact Info */}
         <div className="flex-1 bg-white p-8 rounded-lg shadow-lg flex flex-col gap-6 justify-center">
+          
           <h2 className="text-2xl font-semibold mb-4">
             Informations de contact
           </h2>
-          <div className="flex items-center gap-4 text-lg">
-            <i className="bi bi-telephone-fill text-purple-600 text-2xl"></i>
-            <a
-              href="tel:0033651490377"
-              className="text-blue-600 text-sm hover:underline"
-            >
-              06 51 49 03 77
-            </a>
-          </div>
+
+           <p className="mt-6 text-gray-600 text-sm">
+            Vous pouvez contacter moi par email, ou remplir le
+            formulaire ci-contre et nous vous répondrons dans les plus brefs délais.
+          </p>
+         
           <div className="flex items-center gap-4 text-lg">
             <i className="bi bi-envelope-fill text-purple-600 text-2xl"></i>
             <a
@@ -203,10 +201,7 @@ if (!formData.name.trim()) {
               abdulrahman939291@gmail.com
             </a>
           </div>
-          <p className="mt-6 text-gray-600 text-sm">
-            Vous pouvez nous contacter par téléphone ou par email, ou remplir le
-            formulaire ci-contre et nous vous répondrons dans les plus brefs délais.
-          </p>
+         
         </div>
       </div>
     </div>
