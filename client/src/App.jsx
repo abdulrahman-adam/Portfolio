@@ -1,52 +1,71 @@
+
 import React from 'react';
-// index.jsx or App.jsx
 import './index.css';
 
-import Home from './pages/Home'
-import {Routes, Route} from "react-router-dom"
-import Contact from './pages/Contact'
-import Navbar from './components/Navbar'
-import About from './pages/About'
+// Components
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import All from './pages/All';
+
+// Pages/Sections
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
+
+// Utilities
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // <--- ADD THIS LINE
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import Certifications from './components/Certifications';
+import Services from './components/Services';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   return (
-    <div>
+    <div className="scroll-smooth">
+      {/* Toast notifications will stay fixed at the top */}
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        style={{ zIndex: 9999 }}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        toastStyle={{ fontSize: '14px' }}
+        bodyClassName={() => "font-medium"}
+      />
+
       <Navbar />
-  
 
- <ToastContainer
-  position="top-center"               // Center top of the screen
-  autoClose={4000}                    // Auto-close after 4 seconds for better readability
-  style={{ zIndex: 9999 }}
-  hideProgressBar={false}             // Show progress bar
-  newestOnTop={true}                  // New messages appear on top
-  closeOnClick                        // Close toast on click
-  rtl={false}                          // Left-to-right layout
-  pauseOnFocusLoss                     // Pause when user switches tabs
-  draggable                            // Allow dragging to dismiss
-  pauseOnHover                         // Pause timer on hover
-  theme="colored"                       // Add modern colored theme
-  toastStyle={{ fontSize: '14px' }}    // Slightly smaller text for elegance
-  bodyClassName={() => "font-medium"}   // Medium font for readability
-/>
+      {/* Instead of Routes, we place all components in a stack. 
+          Each section is wrapped in a div with an 'id' that matches your navbar links.
+      */}
+      
+      <main>
+        <section id="home">
+          <Home />
+        </section>
 
+        <section id="about">
+          <About />
+          <Certifications />
+  <Services />
+        </section>
 
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/about" element={<About />}/>
-        <Route path="/contact" element={<Contact />}/>
-        <Route path="/yagoub" element={<All />}/>
-      </Routes>
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
+
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
