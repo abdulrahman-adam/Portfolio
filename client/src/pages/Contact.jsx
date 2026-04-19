@@ -71,7 +71,7 @@ export default function Contact() {
       });
 
       if (res.data.success) {
-        toast.success("Message envoyé !");
+        toast.success("🚀 Message envoyé avec succès. Je vous répondrai dans les plus brefs délais. ✉️");
         setFormData({ name: "", phone: "", email: "", message: "" });
       } else {
         toast.error("Erreur");
