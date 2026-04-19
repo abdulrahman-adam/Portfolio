@@ -26,20 +26,29 @@ const App = () => {
     <div className="scroll-smooth">
       {/* Toast notifications will stay fixed at the top */}
       <ToastContainer
-        position="top-center"
-        autoClose={4000}
-        style={{ zIndex: 9999 }}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        toastStyle={{ fontSize: '14px' }}
-        bodyClassName={() => "font-medium"}
-      />
+  position="top-center"
+  autoClose={4000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="colored"
+  style={{ zIndex: 9999 }}
+  toastStyle={{
+    fontSize: "14px",
+    textAlign: "center",
+    borderRadius: "12px",
+    padding: "14px 18px",
+    fontWeight: "500",
+  }}
+  bodyClassName={() =>
+    "flex items-center justify-center text-center w-full font-medium"
+  }
+  className="toast-center"
+/>
 
       <Navbar />
 
