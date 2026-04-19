@@ -6,7 +6,7 @@ import Certifications from '../components/Certifications'
 
 const Home = () => {
   return (
-    <div>
+    <div className='py-8 lg:py-16'>
     <Info />
   
     </div>

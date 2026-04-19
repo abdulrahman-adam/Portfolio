@@ -1,11 +1,15 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useAnimationTrigger } from "../context/AnimationProvider";
 
 const About = () => {
+  const { trigger } = useAnimationTrigger();
+
   const handleCta = (e) => {
     e.preventDefault();
-    const element = document.getElementById('contact');
+    const element = document.getElementById("contact");
     if (element) {
-      window.history.pushState(null, null, '/contact');
+      window.history.pushState(null, null, "/contact");
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -14,125 +18,213 @@ const About = () => {
     {
       title: "Frontend & Mobile",
       skills: ["React", "React Native", "Angular", "Tailwind CSS"],
-      icon: "bi-code-slash"
+      icon: "bi-code-slash",
     },
     {
       title: "Backend & Logic",
       skills: ["Node.js", "NestJS", "Java", "Python"],
-      icon: "bi-database-fill-gear"
+      icon: "bi-database-fill-gear",
     },
     {
       title: "Data & Cloud",
       skills: ["MongoDB", "MySQL", "MariaDB", "REST APIs"],
-      icon: "bi-server"
+      icon: "bi-server",
     },
     {
       title: "DevOps & Admin",
       skills: ["VPS & Nginx", "CI/CD", "Docker", "Linux Admin"],
-      icon: "bi-terminal-fill"
-    }
+      icon: "bi-terminal-fill",
+    },
   ];
 
+  // 🔥 animation system (same as Info)
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 60 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
   return (
-    <div className="w-full min-h-screen bg-white py-20 px-6 lg:px-20 overflow-hidden">
+    <motion.section
+      key={trigger} // 🔥 navbar click → restart animation
+      initial="hidden"
+      whileInView="show" // 🔥 scroll animation
+      viewport={{ once: false }} // 🔥 replay on scroll
+      variants={container}
+      className="w-full min-h-screen bg-white py-20 px-6 lg:px-20 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
-        
-        {/* Header Section - Entrance Animation */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 mb-16 animate-in fade-in slide-in-from-bottom duration-1000">
-          <div className="flex-1 text-center lg:text-left">
-            <h2 className="text-indigo-600 font-bold uppercase tracking-[0.3em] text-sm mb-4">À Propos</h2>
+
+        {/* 🧠 HEADER */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 mb-16">
+          
+          <motion.div variants={fadeUp} className="flex-1 text-center lg:text-left">
+            <h2 className="text-indigo-600 font-bold uppercase tracking-[0.3em] text-sm mb-4">
+              À Propos
+            </h2>
+
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
               Ingénierie <span className="text-indigo-600">Full Stack</span> & Culture DevOps
             </h1>
+
             <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
-              Passionné par l'architecture logicielle, je ne me contente pas d'écrire du code : 
-              je construis des environnements complets. Mon approche combine la rigueur du 
-              backend avec la fluidité des interfaces modernes, tout en garantissant une 
-              haute disponibilité grâce aux outils DevOps.
+              Passionné par l'architecture logicielle, je construis des environnements complets,
+              combinant backend robuste, interfaces modernes et déploiement DevOps optimisé.
             </p>
-          </div>
-          
-          {/* Stats Box - Hover Animation */}
-          <div className="grid grid-cols-2 gap-4 w-full lg:w-auto animate-in fade-in zoom-in-95 delay-300 duration-700">
-            <div className="group p-6 bg-indigo-50 rounded-2xl text-center transition-all duration-300 hover:bg-indigo-600 hover:shadow-xl hover:-translate-y-2">
-              <div className="text-3xl font-black text-indigo-600 group-hover:text-white transition-colors duration-300">3+</div>
-              <div className="text-xs font-bold text-slate-500 group-hover:text-indigo-100 uppercase tracking-tighter">Années d'Exp.</div>
-            </div>
-            <div className="group p-6 bg-purple-50 rounded-2xl text-center transition-all duration-300 hover:bg-purple-600 hover:shadow-xl hover:-translate-y-2">
-              <div className="text-3xl font-black text-purple-600 group-hover:text-white transition-colors duration-300">15+</div>
-              <div className="text-xs font-bold text-slate-500 group-hover:text-purple-100 uppercase tracking-tighter">Projets Livrés</div>
-            </div>
-          </div>
+          </motion.div>
+
+          {/* 📊 STATS */}
+          <motion.div variants={fadeRight} className="grid grid-cols-2 gap-4 w-full lg:w-auto">
+            
+            <motion.div
+              whileHover={{ y: -8, scale: 1.05 }}
+              className="group p-6 bg-indigo-50 rounded-2xl text-center"
+            >
+              <div className="text-3xl font-black text-indigo-600">3+</div>
+              <div className="text-xs font-bold text-slate-500 uppercase">Années d'Exp.</div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -8, scale: 1.05 }}
+              className="group p-6 bg-purple-50 rounded-2xl text-center"
+            >
+              <div className="text-3xl font-black text-purple-600">15+</div>
+              <div className="text-xs font-bold text-slate-500 uppercase">Projets Livrés</div>
+            </motion.div>
+
+          </motion.div>
         </div>
 
-        {/* Skills Grid - Staggered Card Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 🧩 SKILLS GRID */}
+        <motion.div
+          variants={container}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+        >
           {skillCategories.map((cat, index) => (
-            <div 
-              key={index} 
-              style={{ animationDelay: `${index * 150}ms` }}
-              className="group p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm transition-all duration-500 hover:shadow-2xl hover:bg-white hover:-translate-y-2 animate-in fade-in slide-in-from-bottom fill-mode-both"
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              whileHover={{ y: -10, scale: 1.03 }}
+              className="group p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:bg-white transition-all"
             >
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:rotate-[360deg] transition-all duration-700">
-                <i className={`bi ${cat.icon} text-indigo-600 text-xl group-hover:text-white`}></i>
-              </div>
-              <h3 className="text-lg font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors">{cat.title}</h3>
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.8 }}
+                className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
+              >
+                <i className={`bi ${cat.icon} text-indigo-600 text-xl`}></i>
+              </motion.div>
+
+              <h3 className="text-lg font-bold text-slate-800 mb-3 group-hover:text-indigo-600">
+                {cat.title}
+              </h3>
+
               <div className="flex flex-wrap gap-2">
-                {cat.skills.map(skill => (
-                  <span key={skill} className="text-xs font-semibold bg-white border border-gray-200 text-gray-700 px-2 py-1 rounded-md shadow-sm transition-all hover:border-indigo-400 hover:text-indigo-600">
+                {cat.skills.map((skill, i) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{ scale: 1.08 }}
+                    className="text-xs font-semibold bg-white border border-gray-200 text-gray-700 px-2 py-1 rounded-md shadow-sm"
+                  >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Expertise Detail Section - Slide from side Animation */}
-        <div className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl animate-in fade-in slide-in-from-right duration-1000 delay-500">
+        {/* 🚀 EXPERTISE */}
+        <motion.div variants={fadeUp} className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+            {/* LEFT */}
             <div>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <span className="w-8 h-1 bg-indigo-500 inline-block"></span>
                 Ce que je propose
               </h2>
+
               <ul className="space-y-4">
                 {[
-                  { t: "Architecture Frontend", d: "Interfaces modernes et réactives avec React & Angular." },
-                  { t: "Systèmes Backend", d: "APIs robustes et sécurisées via Node.js et Java/Python." },
-                  { t: "Infrastructure & CI/CD", d: "Déploiement sur VPS (Nginx), conteneurisation et automatisation." },
-                  { t: "Gestion de Données", d: "Modélisation et optimisation de bases SQL et NoSQL." }
+                  { t: "Architecture Frontend", d: "React & Angular modernes." },
+                  { t: "Backend robuste", d: "Node.js, Java, Python sécurisés." },
+                  { t: "DevOps & CI/CD", d: "Docker, VPS, automatisation." },
+                  { t: "Bases de données", d: "SQL & NoSQL optimisés." },
                 ].map((item, i) => (
-                  <li key={i} className="flex gap-4 group cursor-default">
-                    <i className="bi bi-check2-circle text-indigo-400 text-xl group-hover:scale-125 transition-transform duration-300"></i>
+                  <motion.li key={i} whileHover={{ x: 8 }} className="flex gap-4">
+                    <i className="bi bi-check2-circle text-indigo-400 text-xl"></i>
                     <div>
-                      <h4 className="font-bold text-gray-100 group-hover:text-indigo-300 transition-colors">{item.t}</h4>
+                      <h4 className="font-bold text-gray-100">{item.t}</h4>
                       <p className="text-sm text-gray-400">{item.d}</p>
                     </div>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
+            {/* RIGHT CTA */}
             <div className="flex flex-col justify-center items-center lg:items-end text-center lg:text-right">
+              
               <div className="mb-8">
-                <p className="text-gray-400 mb-2 font-medium uppercase tracking-widest text-sm animate-pulse">Prêt pour un nouveau projet ?</p>
-                <h3 className="text-3xl font-bold leading-snug">Transformons vos idées en réalité numérique.</h3>
+                <motion.p
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="text-gray-400 mb-2 uppercase text-sm"
+                >
+                  Prêt pour un nouveau projet ?
+                </motion.p>
+
+                <h3 className="text-3xl font-bold">
+                  Transformons vos idées en réalité numérique.
+                </h3>
               </div>
-              <a
-                href="/contact"
+
+              <motion.a
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleCta}
-                className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-indigo-600 rounded-full hover:bg-indigo-700 hover:scale-105 active:scale-95 shadow-lg hover:shadow-indigo-500/50"
+                className="inline-flex items-center px-8 py-4 font-bold text-white bg-indigo-600 rounded-full shadow-lg cursor-pointer"
               >
                 Lancer une discussion
-                <i className="bi bi-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
-              </a>
+                <motion.i
+                  className="bi bi-arrow-right ml-2"
+                  animate={{ x: [0, 6, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                />
+              </motion.a>
+
             </div>
+
           </div>
-        </div>
+        </motion.div>
 
       </div>
-    </div>
+    </motion.section>
   );
 };
 
